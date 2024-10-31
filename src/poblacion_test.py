@@ -1,5 +1,6 @@
 from poblacion import *
-def test_lee_poblaciones(lista_poblaciones:list[Registro]):
+def test_lee_poblaciones(lista_poblaciones:list[RegistroPoblacion]):
+
 
 def mostrar_numerado(coleccion):
     i=0
@@ -21,7 +22,7 @@ def test_calcula_paises():         # Test de la función calcula_paises
     print("Leidos " , len (paises), "paises distintos")
     mostrar_numerado(paises)
   
-def test_filtra_por_pais():         # Test de la filtra_por_pa
+def test_filtra_por_pais():         
     poblacion_es = filtrar_por_paises(POBLACIONES, "Spain")
     print("Poblacion españa")
     print("Leidos " , len (poblacion_es), "datos de población de España")
