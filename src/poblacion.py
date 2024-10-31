@@ -1,22 +1,29 @@
 import csv
 from collections import namedtuple
+from matplotlib import pyplot as plt
+
 RegistroPoblacion = namedtuple ('RegistroPoblacion', 'pais, codigo, año, censo')
 
-def lee_poblaciones(ruta_fichero):
+def lee_poblaciones(ruta_fichero:str)->list[RegistroPoblacion]:
+
+    '''  '''
+
     poblaciones=[]
-    with open(ruta_fichero, encodin='utf-8') as f:
+    with open(ruta_fichero, encoding='utf-8') as f:
         lector=csv.reader(f)
-        for nombre,codigo,anyo, censo in f:
+        for nombre,codigo,anyo, censo in lector:
             anyo=int(anyo)
             censo=int(censo)
-            tupla=RegistroPoblacion(nombre,codigo,anyo,censo)
-            poblaciones.append(tupla)
+            poblaciones.append(RegistroPoblacion(nombre,codigo,anyo,censo))
     return poblaciones
 
 
-def calcula_paises(poblaciones, nombre_o_codigo):
-    lista_paises=[0]
-    sorted(lista_paises)
+def calcula_paises(poblaciones:list[RegistroPoblacion])->list[str]:
+    paises=set()
+    for tupla in poblaciones:
+        paises.add(tupla.pais)
+    
+    return sorted(paises)
 
     return 
 
@@ -39,15 +46,19 @@ def filtra_por_paises_y_anyo(poblaciones, anyo, paises):
 def muestra_evolucion_poblacion(poblaciones, nombre_o_codigo):
     anyo=[]  
     habitantes=[]
-    for t in filtrar_por_paises(poblaciones, paises):
+    for t in filtrar_por_paises(poblaciones, pais):
         anyo.append(t[0])
         habitantes.append(t[1])
 
     plt.title(titulo)
-    plt.plot(lista_años, lista_habitantes)
+    plt.plot(lista_anyos, lista_habitantes)
     plt.show()
 
 
 def muestra_comparativa_paises_anyo(poblaciones,anyo,paises):
     anyo=[]
     lista_paises=[]
+    
+plt.title(titulo)
+plt.bar(lista_paises, lista_habitantes)
+plt.show()
